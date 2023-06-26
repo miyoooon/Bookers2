@@ -1,1 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
+
+.navlink {
+    text-decoration: none;
+    color: white ; 
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";

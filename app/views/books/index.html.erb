@@ -1,2 +1,50 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <table class="table">
+        <tbody>
+          <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="btn btn-outline-secondary btn-block edit_user_path(@user.id)">
+        <%= link_to edit_user_path(@user.id) do %>
+          <i class="fas fa-user-cog text-secondary"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <%= form_with model: @book do |f| %>
+      <h2>New book</h2>
+      <p>Title</p>
+      <%= f.text_field :title %>
+      <p>Opinion</p>
+      <%= f.text_area :body %>
+      <div class="mt-2">
+        <button type="button" class="btn btn-success">
+        <%= link_to "Create Book",book_path(@user.id),class: "text-light"%>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>

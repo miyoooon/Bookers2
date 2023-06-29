@@ -1,2 +1,71 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <table class="table">
+        <tbody>
+          <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= image_tag @booker.user.get_profile_image(80,80) %>
+              <%= link_to user_path(@booker.user_id) do %>
+                <%= @booker.user.name %>
+              <% end %>
+            </td>
+
+            <td>
+              <%= link_to book_path(@booker.id) do %>
+                <%= @booker.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= @booker.body %>
+            </td>
+            <% if @booker.user_id == current_user.id %>
+            <td>
+              <%= link_to edit_book_path(@booker.id) do %>
+                <button type="button" class="btn btn-success">Edit</button>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(@booker.id),method: :delete do %>
+                <button type="button" class="btn btn-danger">Destroy</button>
+              <% end %>
+            </td>
+            <% end %>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="btn btn-outline-secondary btn-block edit_user_path(@user.id)">
+        <%= link_to edit_user_path(@user.id) do %>
+          <i class="fas fa-user-cog text-secondary"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'list', book: @book %>
+
+</div>

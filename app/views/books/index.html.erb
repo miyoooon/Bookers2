@@ -19,8 +19,30 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= link_to user_path(book.id) do %>
+                <%= image_tag book.user.get_profile_image(80,80) %>
+              <% end %>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td><%= book.body %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
-
   </div>
 
   <div class="row">
@@ -41,9 +63,7 @@
       <p>Opinion</p>
       <%= f.text_area :body %>
       <div class="mt-2">
-        <button type="button" class="btn btn-success">
-        <%= link_to "Create Book",book_path(@user.id),class: "text-light"%>
-        </button>
+      <%= f.submit "Create Book",class: "btn btn-success" %>
       </div>
     <% end %>
   </div>

@@ -11,37 +11,38 @@
 
 <%= flash[:notice] %>
 
-<%= render 'books/info', user: @user %>
+<%= render 'books/info', user: @user2 %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table">
         <thead>
           <tr>
-            <td>
+            <th></th>
+            <th>
               <h6>Title</h6>
-            </td>
-            <td>
+            </th>
+            <th>
               <h6>Opinion</h6>
-            </td>
+            </th>
+          </tr>
         </thead>
         <tbody>
-          </tr>
+          <% @books.each do |book| %>
           <tr>
             <td>
               <%= image_tag @user.get_profile_image(80,80) %>
             </td>
-            <% @books.each do |book| %>
             <td>
               <%= link_to book_path(book.id) do %>
-                <%= book.title %>
+              <%= book.title %>
               <% end %>
             </td>
             <td>
               <%= book.body %>
-            <% end %>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

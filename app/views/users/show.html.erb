@@ -1,2 +1,53 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div>
+  <% if @user.errors.any? %>
+    <h3><%= @user.errors.count %>error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+         <% end %>
+      </ul>
+  <% end %>
+</div>
+
+<%= flash[:notice] %>
+
+<%= render 'books/info', user: @user %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>
+              <h6>Title</h6>
+            </td>
+            <td>
+              <h6>Opinion</h6>
+            </td>
+        </thead>
+        <tbody>
+          </tr>
+          <tr>
+            <td>
+              <%= image_tag @user.get_profile_image(80,80) %>
+            </td>
+            <% @books.each do |book| %>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= book.body %>
+            <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <%= render 'books/edit', user: @user2 %>
+
+  <%= render 'books/list', book: @book %>

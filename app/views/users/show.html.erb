@@ -11,7 +11,24 @@
 
 <%= flash[:notice] %>
 
-<%= render 'books/info', user: @user2 %>
+<div class="container px-5 px-sm-0 mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <table class="table">
+        <tbody>
+          <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -31,7 +48,9 @@
           <% @books.each do |book| %>
           <tr>
             <td>
+              <%= link_to user_path(@user.id) do %>
               <%= image_tag @user.get_profile_image(80,80) %>
+              <% end %>
             </td>
             <td>
               <%= link_to book_path(book.id) do %>
@@ -49,6 +68,14 @@
   </div>
 
 
-  <%= render 'books/edit', user: @user2 %>
+   <div class="row">
+    <div class="col-3">
+      <div class="btn btn-outline-secondary btn-block">
+          <%= link_to edit_user_path(@user.id) do %>
+           <i class="fas fa-user-cog text-secondary"></i>
+          <% end %>
+      </div>
+    </div>
+  </div>
 
   <%= render 'books/list', book: @book %>

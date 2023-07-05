@@ -32,6 +32,14 @@
     </div>
   </div>
 
-<%= render 'books/edit', user: @user2 %>
+<div class="row">
+    <div class="col-3">
+      <div class="btn btn-outline-secondary btn-block">
+        <%= link_to edit_user_path(current_user.id) do %>
+          <i class="fas fa-user-cog text-secondary"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 <%= render 'books/list', book: @book %>

@@ -11,6 +11,12 @@
 
 <%= flash[:notice] %>
 
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>">
+    <%= value %>
+  </div>
+<% end %>
+
 <div class="container px-5 px-sm-0 mt-3">
   <div class="row">
     <div class="col-md-3">
